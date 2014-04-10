@@ -9,16 +9,16 @@ class Problem14
 		:	enableDebug( false )
 	{
 	}
-	uint32_t FindLargest( uint32_t max )
+	uint64_t FindLargest( uint64_t max )
 	{
 		std::cout << "=================== Largest Collatz Size " << max << " ===================\n";
 
-		uint32_t currentMax = 0;
-		uint32_t startingNumberOfMax = 0;
+		uint64_t currentMax = 0;
+		uint64_t startingNumberOfMax = 0;
 
-		for ( int i = 3 ; i <max ; ++i )
+		for ( uint64_t i = 3 ; i <max ; ++i )
 		{
-			uint32_t currentSize = FindCollatzSize( i );
+			uint64_t currentSize = FindCollatzSize( i );
 			if ( currentSize > currentMax )
 			{
 				if ( enableDebug )
@@ -35,7 +35,7 @@ class Problem14
 
 		return currentMax;
 	}
-	uint32_t DoCollatz( uint32_t num )
+	uint64_t DoCollatz( uint64_t num )
 	{
 		if ( enableDebug )
 			std::cout << "Collatz of " << num;
@@ -49,13 +49,13 @@ class Problem14
 			std::cout << " is " << num << std::endl;
 		return num;
 	}
-	int32_t FindCollatzSize( uint32_t collatzStart )
+	uint64_t FindCollatzSize( uint64_t collatzStart )
 	{
 		if ( enableDebug )
 			std::cout << "Finding collatz size of " << collatzStart << std::endl;
 
-		uint32_t collatzSize = 1;
-		uint32_t currentCollatz = collatzStart;
+		uint64_t collatzSize = 1;
+		uint64_t currentCollatz = collatzStart;
 		do
 		{
 			if ( enableDebug )
