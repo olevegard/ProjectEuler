@@ -1,19 +1,26 @@
 #include "Problem1.h"
 #include "Problem2.h"
 #include "Problem3.h"
+#include "Problem4.h"
 #include "Problem14.h"
 
 void TestPorblem1();
 void TestPorblem2();
 void TestPorblem3();
+void TestPorblem4();
 void TestPorblem14();
 
 int main()
 {
+/*
 	TestPorblem1();
 	TestPorblem2();
 	TestPorblem3();
+	TestPorblem4();
 	TestPorblem14();
+	*/
+
+	TestPorblem4();
 }
 void TestPorblem1()
 {
@@ -35,6 +42,12 @@ void TestPorblem3()
 	Problem3 prob3;
 	auto answer = prob3.FindLargestFactor( 600851475143 );
 	std::cout << "The answer to problem 3 is : " << answer << std::endl;;
+}
+void TestPorblem4()
+{
+	Problem4 prob4;
+	auto answer = prob4.FindPalindromeProducts( );
+	std::cout << "The answer to problem 4 is : " << answer << std::endl;;
 }
 void TestPorblem14()
 {
