@@ -1,12 +1,15 @@
 #include "Problem1.h"
+#include "Problem2.h"
 #include "Problem14.h"
 
-void TestPorblem14();
 void TestPorblem1();
+void TestPorblem2();
+void TestPorblem14();
 
 int main()
 {
 	TestPorblem1();
+	TestPorblem2();
 	TestPorblem14();
 }
 void TestPorblem1()
@@ -17,6 +20,12 @@ void TestPorblem1()
 
 	auto answer =  prob1.CalcSum();
 	std::cout << "The answer to problem 1 is : " << answer << std::endl;;
+}
+void TestPorblem2()
+{
+	Problem2 prob2;
+	auto answer = prob2.CalcFibonacciSum( 4000000 );
+	std::cout << "The answer to problem 2 is : " << answer << std::endl;;
 }
 void TestPorblem14()
 {
