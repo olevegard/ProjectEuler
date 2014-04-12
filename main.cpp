@@ -2,12 +2,14 @@
 #include "Problem2.h"
 #include "Problem3.h"
 #include "Problem4.h"
+#include "Problem5.h"
 #include "Problem14.h"
 
 void TestPorblem1();
 void TestPorblem2();
 void TestPorblem3();
 void TestPorblem4();
+void TestPorblem5();
 void TestPorblem14();
 
 int main()
@@ -17,10 +19,10 @@ int main()
 	TestPorblem2();
 	TestPorblem3();
 	TestPorblem4();
+	TestPorblem5();
 	TestPorblem14();
 	*/
 
-	TestPorblem4();
 }
 void TestPorblem1()
 {
@@ -48,6 +50,12 @@ void TestPorblem4()
 	Problem4 prob4;
 	auto answer = prob4.FindPalindromeProducts( );
 	std::cout << "The answer to problem 4 is : " << answer << std::endl;;
+}
+void TestPorblem5()
+{
+	Problem5 prob5;
+	auto answer = prob5.FindSmallesMultiple( 20 );
+	std::cout << "The answer to problem 5 is : " << answer << std::endl;;
 }
 void TestPorblem14()
 {
