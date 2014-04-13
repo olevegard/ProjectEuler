@@ -1,65 +1,56 @@
+#include "Problem.h"
+
+#include <vector>
+
 #include "Problem1.h"
 #include "Problem2.h"
 #include "Problem3.h"
 #include "Problem4.h"
 #include "Problem5.h"
+#include "Problem6.h"
+#include "Problem7.h"
+#include "Problem8.h"
 #include "Problem14.h"
 
-void TestPorblem1();
-void TestPorblem2();
-void TestPorblem3();
-void TestPorblem4();
-void TestPorblem5();
-void TestPorblem14();
+std::vector< Problem* > problems;
+Problem1 prob1;
+Problem2 prob2;
+Problem3 prob3;
+Problem4 prob4;
+Problem5 prob5;
+Problem6 prob6;
+Problem7 prob7;
+Problem8 prob8;
+
+Problem14 prob14;
+
+void SolveProblem( int32_t problem );
+void SolveProblem( Problem* problem );
+void SolveAll();
 
 int main()
 {
-/*
-	TestPorblem1();
-	TestPorblem2();
-	TestPorblem3();
-	TestPorblem4();
-	TestPorblem5();
-	TestPorblem14();
-	*/
+	problems.push_back( &prob1 );
+	problems.push_back( &prob2 );
+	problems.push_back( &prob3 );
+	problems.push_back( &prob4 );
+	problems.push_back( &prob5 );
+	problems.push_back( &prob6 );
+	problems.push_back( &prob7 );
+	problems.push_back( &prob8 );
+	problems.push_back( &prob14 );
 
-}
-void TestPorblem1()
-{
-	Problem1 prob1;
-	prob1.AddMultiplesBelow( 3, 1000 );
-	prob1.AddMultiplesBelow( 5, 1000 );
+	///SolveProblem( 0 );
+	SolveAll();
 
-	auto answer =  prob1.CalcSum();
-	std::cout << "The answer to problem 1 is : " << answer << std::endl;;
+	SolveProblem( 1 );
 }
-void TestPorblem2()
+void SolveProblem( int32_t i )
 {
-	Problem2 prob2;
-	auto answer = prob2.CalcFibonacciSum( 4000000 );
-	std::cout << "The answer to problem 2 is : " << answer << std::endl;;
+	std::cout << "The answer to problem " << i <<  " is : " << problems[i - 1]->Solve() << std::endl;
 }
-void TestPorblem3()
+void SolveAll()
 {
-	Problem3 prob3;
-	auto answer = prob3.FindLargestFactor( 600851475143 );
-	std::cout << "The answer to problem 3 is : " << answer << std::endl;;
-}
-void TestPorblem4()
-{
-	Problem4 prob4;
-	auto answer = prob4.FindPalindromeProducts( );
-	std::cout << "The answer to problem 4 is : " << answer << std::endl;;
-}
-void TestPorblem5()
-{
-	Problem5 prob5;
-	auto answer = prob5.FindSmallesMultiple( 20 );
-	std::cout << "The answer to problem 5 is : " << answer << std::endl;;
-}
-void TestPorblem14()
-{
-	Problem14 prob;
-	auto answer =  prob.FindLargest( 1000000 );
-	std::cout << "The answer to problem 14 is : " << answer << std::endl;;
+	for ( auto i = 0 ; i < problems.size() ; ++i )
+		SolveProblem( i + 1  );
 }

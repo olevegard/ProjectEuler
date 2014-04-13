@@ -1,24 +1,29 @@
 #pragma once
 
 #include "Math.h"
+#include "Problem.h"
 
-class Problem3
+class Problem3: public Problem
 {
 	public:
 	Problem3()
 	{
 		primeNumbers.reserve( 100000 );
 	}
-	void GeneratePrimeNumberList( uint64_t max_ )
+	int64_t Solve()
 	{
-		uint64_t max = sqrt( max_ );
-		for ( uint64_t num = 1 ; num < max ; ++num )
+		return FindLargestFactor( 600851475143 );
+	}
+	void GeneratePrimeNumberList( int64_t max_ )
+	{
+		int64_t max = sqrt( max_ );
+		for ( int64_t num = 1 ; num < max ; ++num )
 		{
 			if ( Math::IsPrime( num ) )
 				primeNumbers.push_back( num );
 		}
 	}
-	uint64_t FindLargestFactor( uint64_t number )
+	int64_t FindLargestFactor( int64_t number )
 	{
 		GeneratePrimeNumberList( number );
 
@@ -35,5 +40,5 @@ class Problem3
 	
 
 	private:
-		std::vector< uint64_t > primeNumbers;
+		std::vector< int64_t > primeNumbers;
 };

@@ -1,11 +1,16 @@
 #pragma once
 
 #include <iostream>
+#include "Problem.h"
 
-class Problem5
+class Problem5: public Problem
 {
 	public:
-	uint64_t FindSmallesMultiple( uint64_t rangeMax )
+	int64_t Solve()
+	{
+		return FindSmallesMultiple( 20 );
+	}
+	int64_t FindSmallesMultiple( int64_t rangeMax )
 	{
 		for ( auto smallest = rangeMax ; ; smallest += rangeMax )
 		{
@@ -15,7 +20,7 @@ class Problem5
 		return 0;
 	}
 	private:
-	bool IsMultipleOfAll( uint64_t number, uint64_t rangeMax )
+	bool IsMultipleOfAll( int64_t number, int64_t rangeMax )
 	{
 		for ( auto factor = rangeMax; factor > 0 ; --factor )
 		{

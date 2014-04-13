@@ -1,8 +1,9 @@
 #pragma once
 
+#include "Problem.h"
 #include <algorithm>
 
-class Problem2
+class Problem2: public Problem
 {
 	public:
 		Problem2()
@@ -10,9 +11,14 @@ class Problem2
 			,	prevFib2( 0 )
 		{
 		}
-		void AddFibonacciNumbers( int32_t max ) 
+
+		int64_t Solve()
 		{
-			for ( int32_t currentFib = prevFib1 + prevFib2 ; currentFib <= max; currentFib = prevFib1 + prevFib2 )
+			return CalcFibonacciSum( 4000000 );
+		}
+		void AddFibonacciNumbers( int64_t max ) 
+		{
+			for ( int64_t currentFib = prevFib1 + prevFib2 ; currentFib <= max; currentFib = prevFib1 + prevFib2 )
 			{
 				prevFib2 = prevFib1;
 				prevFib1 = currentFib;
@@ -21,14 +27,14 @@ class Problem2
 					evenFibonacciNumbers.push_back( currentFib );
 			}
 		}
-		int32_t CalcFibonacciSum( int32_t max )
+		int64_t CalcFibonacciSum( int64_t max )
 		{
 			AddFibonacciNumbers( max );
 			return std::accumulate( std::begin( evenFibonacciNumbers ), std::end( evenFibonacciNumbers ), 0 );
 		}
 
 	private:
-		int32_t prevFib1;
-		int32_t prevFib2;
-		std::vector< int32_t > evenFibonacciNumbers;
+		int64_t prevFib1;
+		int64_t prevFib2;
+		std::vector< int64_t > evenFibonacciNumbers;
 };

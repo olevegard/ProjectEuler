@@ -1,10 +1,16 @@
 #pragma once
 
 #include <sstream>
-class Problem4
+#include "Problem.h"
+
+class Problem4: public Problem
 {
 	public:
-	bool IsPalindrome( int32_t number )
+	int64_t Solve()
+	{
+		return FindPalindromeProducts( );
+	}
+	bool IsPalindrome( int64_t number )
 	{
 		std::stringstream ss;
 		ss << number;
@@ -16,14 +22,14 @@ class Problem4
 
 		return  ( original == reversed );
 	}
-	int32_t FindPalindromeProducts()
+	int64_t FindPalindromeProducts()
 	{
-		int32_t currentMax = 0;
+		int64_t currentMax = 0;
 		for ( auto outer = 999 ; outer > 0 ; --outer )
 		{
 			for ( auto inner = outer - 1 ; inner > 0 ; --inner )
 			{
-				int32_t product = inner * outer;
+				int64_t product = inner * outer;
 				if ( IsPalindrome( product ) && product > currentMax )
 				{
 					currentMax = product;

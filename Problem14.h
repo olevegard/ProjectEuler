@@ -1,25 +1,30 @@
 #pragma once
 
 #include <iostream>
+#include "Problem.h"
 
-class Problem14
+class Problem14 : public Problem
 {
 	public:
 	Problem14()
 		:	enableDebug( false )
 	{
 	}
-	uint64_t FindLargest( uint64_t max )
+	int64_t Solve()
+	{
+		return FindLargest( 1000000 );
+	}
+	int64_t FindLargest( int64_t max )
 	{
 		if ( enableDebug )
 			std::cout << "=================== Largest Collatz Size " << max << " ===================\n";
 
-		uint64_t currentMax = 0;
-		uint64_t startingNumberOfMax = 0;
+		int64_t currentMax = 0;
+		int64_t startingNumberOfMax = 0;
 
-		for ( uint64_t i = 3 ; i <max ; ++i )
+		for ( int64_t i = 3 ; i <max ; ++i )
 		{
-			uint64_t currentSize = FindCollatzSize( i );
+			int64_t currentSize = FindCollatzSize( i );
 			if ( currentSize > currentMax )
 			{
 				if ( enableDebug )
@@ -39,13 +44,13 @@ class Problem14
 
 		return currentMax;
 	}
-	uint64_t FindCollatzSize( uint64_t collatzStart )
+	int64_t FindCollatzSize( int64_t collatzStart )
 	{
 		if ( enableDebug )
 			std::cout << "Finding collatz size of " << collatzStart << std::endl;
 
-		uint64_t collatzSize = 1;
-		uint64_t currentCollatz = collatzStart;
+		int64_t collatzSize = 1;
+		int64_t currentCollatz = collatzStart;
 		do
 		{
 			if ( enableDebug )
@@ -63,7 +68,7 @@ class Problem14
 		}
 		return collatzSize;
 	}
-	uint64_t DoCollatz( uint64_t num )
+	int64_t DoCollatz( int64_t num )
 	{
 		if ( enableDebug )
 			std::cout << "Collatz of " << num;
