@@ -3,6 +3,8 @@
 #include "Problem.h"
 
 #include <vector>
+#include <algorithm>
+#include <iomanip>
 
 enum class Direction{ Right, Down };
 struct Movement
@@ -16,6 +18,65 @@ struct Movement
 	int y;
 	Direction dir;
 };
+struct Pascal
+{
+	Pascal()
+	{
+		level = 0;
+
+		std::vector< int64_t > vec;
+		numbers.push_back( vec );
+		numbers[0].push_back( 1 );
+
+	}
+	void GotoNext()
+	{
+		std::vector< int64_t > newLevel;
+		const std::vector< int64_t > &prevLevel = numbers[level];
+
+		newLevel.push_back( 1 );
+
+		for ( int64_t i = 0 ; ( i + 1 ) < prevLevel.size() ; ++i )
+			newLevel.push_back(  prevLevel[i] + prevLevel[i + 1] );
+
+		newLevel.push_back( 1 );
+		numbers.push_back( newLevel );
+
+		++level;
+	}
+	int64_t GetMiddleNumber( int64_t level_ )
+	{
+		while ( level < level_ )
+			GotoNext();
+
+		int64_t middle = numbers[level_].size() / 2;
+		return numbers[level_][middle];
+	}
+
+	void PrintTriangle() const
+	{
+		for ( int64_t i = 0; i < numbers.size() ; ++i )
+		{
+			std::cout << "Level " << std::setw( 4 ) << i << "\t";
+			PrintLine( numbers[i] );
+		}
+	}
+	void PrintLine( const std::vector< int64_t > &line ) const
+	{
+		for ( const auto &num : line )
+		{
+			std::cout << num << " ";
+		}
+		std::cout << std::endl;
+	}
+	int64_t GetLevel() const
+	{
+		return level;
+	}
+	private:
+		int64_t level;
+		std::vector< std::vector< int64_t > > numbers;
+};
 
 class Problem15 : public Problem
 {
@@ -27,42 +88,24 @@ class Problem15 : public Problem
 	}
 	int64_t Solve()
 	{
-		std::cout << std::endl;
+		Pascal p;
+		int64_t level = 40;
 
-		int64_t count = 1;
+		return p.GetMiddleNumber( 20 + 20 );
+	}
+	// Finds all possible routes
+	int64_t SlowSolve()
+	{
 		FindFirstRoute();
-		PrintRouteOneline();
+		int64_t count = 1;
 
 		while( FindNextRoute()  )
 		{
 			++count;
-			//std::cout << "Count : " << count << " ";
-			if ( ( count % 150000000 ) == 0 )
-			PrintRouteOneline();
-			//PrintRoute();
-			//std::cin.ignore();
 		}
-
-		//SimpleSolve();
-
 		return count;
 	}
-	void SimpleSolve()
-	{
-		//int32_t count = 1;
-		std::string route = "12345";
-		std::string copy = route;
-
-		for ( int32_t i = 0 ; i < route.length() ;  i++ )
-		{
-			//std::cout << "\ni " << i << std::endl;
-			for ( int32_t j = i + 1 ; j < route.length(); j++ )
-			{
-				std::cout << "Comparing " << i << " and " << j;
-				std::cout << " =  " << copy[i] << " and " << copy[j] << std::endl;
-			}
-		}
-	}
+	// Finds any route
 	bool FindNextRoute()
 	{
 		//std::cout << "========================= Finding new route =========================\n";
@@ -293,5 +336,4 @@ class Problem15 : public Problem
 	int32_t columns;
 	int32_t rows;
 	std::vector< Movement > lastRoute;
-	//std::vector< std::vector< Movement > > routes;
 };
